@@ -9,7 +9,8 @@ window.onload = function() {
         //lägger till scripttaggen i head 
         document.getElementsByTagName("head")[0].appendChild(fetchScript); 
 
-
+        
+        //skapar sökknappen 
         let searchbutton = document.getElementById("searchButton"); 
         searchbutton.addEventListener("click", function() {
             let url = "https://www.flickr.com/services/feeds/photos_public.gne?"; 
@@ -19,12 +20,10 @@ window.onload = function() {
             let search = encodeURI(searchinput); 
         }); 
 
-    }
+    } //stänger handleFlickr
 
-   
 //kör funktionen som häntar datan 
 handleFlickr(); 
-
 
 } //stänger window-onload 
 
@@ -43,7 +42,7 @@ handleFlickr();
     //for-loop som skriver ut datans bilder 
     for (let i=0; i<flickrdata.length; i++) {
 
-        //hämtar datan i sin array, och bilderna som finns i egenskaperna media - m 
+        //hämtar datan i sin array, och bilderna som finns i egenskaperna media - m, för objektet 
         let image = data.items[i].media.m;
          //skapar en html-tagg som bilderna ska finnas i 
          let imagecontainer = document.createElement("img"); 
@@ -72,27 +71,23 @@ handleFlickr();
         //eventlyssnare för knapp
         let modalB = document.getElementsByTagName("button");
         modalB[i].addEventListener("click", function() {
-
+            //använder boostraps modal 
             $('#myModal').modal(); 
-
+            
+            //sätter titel + innehålll i modalen 
             let flickrdata = data.items;
-        
-        
             let modaltitle = document.getElementById("modal-id"); 
             modaltitle.innerText = data.items[i].title; 
-        
             let modalbody = document.getElementById("modal-body"); 
             modalbody.innerHTML = data.items[i].description; 
-        
-
         });   
-    } 
+    } //stänger for-loop 
 
     
     //for-loop som skriver ut datans titlar  
     for (let i=0; i<flickrdata.length; i++) {
 
-            //hämtar datan i sin array, och bilderna som finns i egenskaperna media - m 
+            //hämtar datan i sin array, och titeln från objektet  
             let headline = data.items[i].title;
             //skapar en html-tagg som bilderna ska finnas i 
             let cardheading = document.createElement("h6"); 
@@ -114,4 +109,3 @@ handleFlickr();
 
  } //stänger getData 
 
- //stämnger clickSection
